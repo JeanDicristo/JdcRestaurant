@@ -8,8 +8,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProfilUserRepository::class)]
+#[ORM\EntityListeners(['App\EntityListener\UserListener'])]
+#[UniqueEntity('email')]
 class ProfilUser implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -18,27 +22,33 @@ class ProfilUser implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Length(min: 0, max: 255)]
+    #[Assert\Email()]
     private ?string $email = null;
 
     #[ORM\Column]
+    #[Assert\NotNull()]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
+     private  $plainPassword = null;
+
     #[ORM\Column]
+    #[Assert\NotBlank()]
     private ?string $password = null;
 
     #[ORM\Column]
+    #[Assert\Positive()]
     private ?int $guest = null;
 
     #[ORM\ManyToMany(targetEntity: Allergy::class, inversedBy: 'profilUsers')]
     private Collection $allergy;
 
     #[ORM\Column]
+    #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
+    #[Assert\NotNull()]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToMany(targetEntity: Reservation::class, inversedBy: 'profilUsers')]
@@ -46,6 +56,8 @@ class ProfilUser implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
         $this->allergy = new ArrayCollection();
         $this->reservation = new ArrayCollection();
     }
@@ -96,6 +108,22 @@ class ProfilUser implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getPlainPassword()
+    {
+         return $this->plainPassword;
+    }
+
+    /**
+     * Set the value of plainPassword
+     *
+     * @return  self
+     */ 
+    public function setPlainPassword($plainPassword)
+    {
+         $this->plainPassword = $plainPassword;
+
+         return $this;
+    }
     /**
      * @see PasswordAuthenticatedUserInterface
      */
