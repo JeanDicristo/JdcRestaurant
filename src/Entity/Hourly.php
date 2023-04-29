@@ -19,6 +19,9 @@ class Hourly
     #[ORM\Column(length: 255)]
     private ?string $OpeningTime = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $ClosedTime = null;
+
     #[ORM\Column]
     private ?bool $closed = null;
 
@@ -89,6 +92,26 @@ class Hourly
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of ClosedTime
+     */ 
+    public function getClosedTime()
+    {
+        return $this->ClosedTime;
+    }
+
+    /**
+     * Set the value of ClosedTime
+     *
+     * @return  self
+     */ 
+    public function setClosedTime($ClosedTime)
+    {
+        $this->ClosedTime = $ClosedTime;
 
         return $this;
     }

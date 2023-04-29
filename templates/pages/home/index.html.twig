@@ -3,18 +3,41 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<div class="galerie">
+		<h3>GALERIE</h3>
+		<p>Découvrez nos spécialités culinaires. Des plats traditionnels aux richesses du terroirs de la région de Chambéry.</p>
+	</div>
+	{% for dishs in dishs %}
+	<div class="card" style="width: 18rem;">
+	<img src="{{ vich_uploader_asset(dishs, 'imageFile') }}" alt="">
+		<div class="card-body">
+			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		</div>
+{% endfor %}
+	</div>
+	<h3>NOTRE SAVOIR FAIRE</h3>
+	<div class="savoir-faire">
+		<div class="degustation">
+			<h4>Dégustation de vin</h4>
+		<img src="{{ asset('images/verre-de-vin.png') }}" alt="" class="img-savoir-faire">
+			<p>
+				Nous proposons une carte des vins bien fournie, avec des vins de différents cépages.
+			</p>
+		</div>
+		<div class="histoire">
+			<h3>Histoire Gastronomique</h3>
+			<img src="{{ asset('images/pozole.png') }}" alt=" " class="img-savoir-faire">
+			<p>
+				Nous racontons une histoire gastronomique, celle de Chambéry.
+			</p>
+		</div>
+	</div>
+	<div class="arnaud-michant">
+		<h3>ARNAUD MICHANT</h3>
+		<P>Arnaud Michant est un célèbre chef cuisinier de Haute-Savoie qui a ouvert un nouveau restaurant appelé "Quai Antique". Sa cuisine est raffinée et met en valeur les produits locaux de la région.</P>
+	</div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/jeandicristo/Desktop/JdcRestaurant/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/jeandicristo/Desktop/JdcRestaurant/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<button class="btn-reservation">
+		<a href="#">Réservation</a>
+	</button>
 {% endblock %}

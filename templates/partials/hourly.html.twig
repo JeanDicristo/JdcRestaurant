@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JdcRestaurant - Horaires{% endblock %}
+
+{% block body %}
+
+{% for hourly in hourlys %}
+
+				<li>{{ hourly.day }} -  {{ hourly.OpeningTime}} -  {{ hourly.ClosedTime}}</li>
+			{% endfor %}
+-{% endblock %}

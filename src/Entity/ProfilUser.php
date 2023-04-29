@@ -34,7 +34,7 @@ class ProfilUser implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     #[Assert\NotBlank()]
-    private ?string $password = null;
+    private ?string $password = 'password';
 
     #[ORM\Column]
     #[Assert\Positive()]
@@ -60,6 +60,11 @@ class ProfilUser implements UserInterface, PasswordAuthenticatedUserInterface
         $this->updatedAt = new \DateTimeImmutable();
         $this->allergy = new ArrayCollection();
         $this->reservation = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        
     }
 
     public function getId(): ?int
