@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230428221108 extends AbstractMigration
+final class Version20230501100906 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,6 +20,7 @@ final class Version20230428221108 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('CREATE SEQUENCE admin_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE allergy_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE category_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE dish_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
@@ -28,6 +29,8 @@ final class Version20230428221108 extends AbstractMigration
         $this->addSql('CREATE SEQUENCE menu_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE profil_user_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE reservation_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE TABLE admin (id INT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_880E0D76E7927C74 ON admin (email)');
         $this->addSql('CREATE TABLE allergy (id INT NOT NULL, title VARCHAR(100) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE category (id INT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE dish (id INT NOT NULL, category_id INT DEFAULT NULL, title VARCHAR(100) NOT NULL, description TEXT NOT NULL, price DOUBLE PRECISION NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, image_name VARCHAR(255) DEFAULT NULL, image_size INT DEFAULT NULL, PRIMARY KEY(id))');
@@ -77,6 +80,7 @@ final class Version20230428221108 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
+        $this->addSql('DROP SEQUENCE admin_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE allergy_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE category_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE dish_id_seq CASCADE');
@@ -91,6 +95,7 @@ final class Version20230428221108 extends AbstractMigration
         $this->addSql('ALTER TABLE profil_user_allergy DROP CONSTRAINT FK_E53A2336DBFD579D');
         $this->addSql('ALTER TABLE profil_user_reservation DROP CONSTRAINT FK_F090BDD8227A1CC4');
         $this->addSql('ALTER TABLE profil_user_reservation DROP CONSTRAINT FK_F090BDD8B83297E7');
+        $this->addSql('DROP TABLE admin');
         $this->addSql('DROP TABLE allergy');
         $this->addSql('DROP TABLE category');
         $this->addSql('DROP TABLE dish');

@@ -61,10 +61,10 @@ class ProfilUser implements UserInterface, PasswordAuthenticatedUserInterface
         $this->allergy = new ArrayCollection();
         $this->reservation = new ArrayCollection();
     }
-
+    
     public function __toString()
     {
-        
+        return $this->getEmail();
     }
 
     public function getId(): ?int
