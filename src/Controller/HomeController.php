@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Dish;
+use App\Entity\Hourly;
 use App\Repository\DishRepository;
+use App\Repository\HourlyRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,10 +17,15 @@ class HomeController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(
         ManagerRegistry $doctrine,
-        DishRepository $dishRepository
+        DishRepository $dishRepository,
+        HourlyRepository $hourlyRepository,
     ): Response {
         $dishRepository = $doctrine->getRepository(Dish::class);
-        $dishs = $dishRepository->findBY([]);
+        $dishs = $dishRepository->findBy([], ['id' => 'ASC'], 6); // Récupéréer uniquement 3 PLats ...   FindAll() Récuperer tout les plat
+
+        $hourlyRepository = $doctrine->getRepository(Hourly::class);
+        $hourlys = $hourlyRepository->findBY([]);
+        
         $imageNames = array();
         foreach ($dishs as $dish) {
             $imageNames[] = $dish->getImageName();
@@ -27,6 +34,7 @@ class HomeController extends AbstractController
         return $this->render('pages/home/index.html.twig', [
             'dishs' => $dishs,
             'imageNames' => $imageNames,
+            'hourlys' => $hourlys,
         ]);
     }
 }

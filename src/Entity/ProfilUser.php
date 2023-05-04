@@ -51,15 +51,12 @@ class ProfilUser implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToMany(targetEntity: Reservation::class, inversedBy: 'profilUsers')]
-    private Collection $reservation;
 
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
         $this->allergy = new ArrayCollection();
-        $this->reservation = new ArrayCollection();
     }
     
     public function __toString()
@@ -209,30 +206,6 @@ class ProfilUser implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Reservation>
-     */
-    public function getReservation(): Collection
-    {
-        return $this->reservation;
-    }
-
-    public function addReservation(Reservation $reservation): self
-    {
-        if (!$this->reservation->contains($reservation)) {
-            $this->reservation->add($reservation);
-        }
-
-        return $this;
-    }
-
-    public function removeReservation(Reservation $reservation): self
-    {
-        $this->reservation->removeElement($reservation);
 
         return $this;
     }

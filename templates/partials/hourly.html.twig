@@ -3,9 +3,19 @@
 {% block title %}JdcRestaurant - Horaires{% endblock %}
 
 {% block body %}
-
-{% for hourly in hourlys %}
-
-				<li>{{ hourly.day }} -  {{ hourly.OpeningTime}} -  {{ hourly.ClosedTime}}</li>
-			{% endfor %}
--{% endblock %}
+    <h1>Horaires</h1>
+    {% if hourlys is not empty %}
+        <ul class="list-unstyled">
+        {% for hourly in hourlys %}
+            <li>
+                <span class="day">{{ hourly.day }}</span>
+                <span class="opening-time">{{ hourly.OpeningTime }}</span>
+                <span class="separator">-</span>
+                <span class="closing-time">{{ hourly.ClosedTime }}</span>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun horaire disponible pour le moment.</p>
+    {% endif %}
+{% endblock %}

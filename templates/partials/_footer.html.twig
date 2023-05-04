@@ -1,0 +1,33 @@
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Horaires d'ouverture</h4>
+                <ul>
+                     {% if hourlys is not empty %}
+        <ul class="list-unstyled">
+        {% for hourly in hourlys %}
+            <li>
+                <span class="day">{{ hourly.day }}</span>
+                <span class="opening-time">{{ hourly.OpeningTime }}</span>
+                <span class="separator">-</span>
+                <span class="closing-time">{{ hourly.ClosedTime }}</span>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun horaire disponible pour le moment.</p>
+    {% endif %}
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Adresse</h4>
+                <p>123 Rue du Restaurant<br>13010 Marseille</p>
+            </div>
+            <div class="col-md-4">
+                <h4>Contact</h4>
+                <p>Téléphone : 01 23 45 67 89<br>Email : info@jdc-restaurant.com</p>
+            </div>
+        </div>
+    </div>
+</footer>

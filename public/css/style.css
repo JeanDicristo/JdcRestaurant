@@ -1,62 +1,102 @@
+/* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Asul&family=Galada&display=swap');
 
+/* Global styles */
 body {
     margin: 0;
     padding: 0;
     background-color: #E8E6E6;
     font-family: Asul, Arial, Helvetica, sans-serif;
 }
-
+li {
+    list-style-type: none;
+}
+/* Header section */
 header {
     width: 100%;
     height: 500px;
-    background-image: url('/images/bgHeaderHome.png') ;
+    background-image: url('/images/bgHeaderHome.png');
     background-position: center;
     background-size: cover;
     text-align: center;
     padding: 10px;
 }
 
-footer {
-    width: 100%;
-    background-color: #313131;
-    text-align: center;
-}
-
-header,
+/* Navigation menu */
 nav a,
-.nav-link,
-footer {
+.nav-link {
     color: whitesmoke;
 }
 ul .dropdown-menu {
     background-color: #313131;
 }
 
-h3 {
-    text-decoration: underline;
+/* Footer section */
+footer {
+    width: 100%;
+    background-color: #313131;
+    text-align: center;
+    height: 250px;
+    padding: 10px;
+    margin-top: 20px;
+    color: whitesmoke;
+}
+.img-social {
+    width: 40px;
+    height: 40px;
+    margin-left: 40px;
 }
 
-h3, 
-p, 
-h2, 
-.li-carte {
-    text-align: center;
+/* Card section */
+.card-best {
+    background-color: #ffffff;
+    height: 400px;
+    display: flex;
+    box-shadow: 0px 5px 5px rgb(10, 10, 10);
+    margin-bottom: 15px;
+}
+
+.card {
+    height: 260px;
+    margin-left: 20px;
+    margin: auto;
+}
+
+.img-dish {
+    height: 200px;
 }
 
 .title-carte {
     font-family: Galada, Asul, Arial, Helvetica, sans-serif;
+    color: black;
 }
 
 .li-carte {
+    text-align: center;
     list-style: none;
 }
+.carte-menu {
+    padding: 20px;
+    background-color: #ffffff;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50px;
+    box-shadow: 0px 5px 5px rgb(10, 10, 10);
+    margin-bottom: 30px;
+}
+
+.card-text::before{
+    top: 10px;
+}
+/* Savoir-faire section */
 .savoir-faire {
     height: 400px;
     width: 100%;
     display: flex;
     align-items: center;
 }
+
 .degustation,
 .histoire {
     width: 580px;
@@ -66,17 +106,20 @@ h2,
     margin-right: auto;
     box-shadow: 0px 5px 5px rgb(10, 10, 10);
 }
+
 .img-savoir-faire {
     width: 80px;
     height: 80px;
 }
+
+/* Arnaud Michant section */
 .arnaud-michant {
     width: 100%;
     background-color: white;
-    
 }
 
- .btn-reservation {
+/* Button styles */
+.btn-reservation {
     background-color: black;
     width: 120px;
     height: 40px;
@@ -86,25 +129,33 @@ h2,
     text-align: center;
     display: block;
     margin: auto;
-
 }
 
 .button-connexion {
     width: 120px;
     background-color: black;
     color: white;
-
 }
- .btn-reservation  a {
+
+.btn-reservation a {
     color: white;
 }
-footer {
-    height: 200px;
-    padding: 10px;
-    margin-top: 20px;
+
+/* Text styles */
+h3,
+h4 {
+    text-decoration: underline;
 }
-.img-social {
-    width: 40px;
-    height: 40px;
-    margin-left: 40px;
+
+h3,
+p,
+h2,
+h4,
+.li-carte {
+    text-align: center;
+}
+
+h1,
+h2{
+    color: whitesmoke;
 }

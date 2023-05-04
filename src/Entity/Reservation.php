@@ -28,9 +28,6 @@ class Reservation
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $hour = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $commentaire = null;
-
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -43,6 +40,8 @@ class Reservation
     public function __construct()
     {
         $this->profilUsers = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -98,18 +97,6 @@ class Reservation
         return $this;
     }
 
-    public function getCommentaire(): ?string
-    {
-        return $this->commentaire;
-    }
-
-    public function setCommentaire(string $commentaire): self
-    {
-        $this->commentaire = $commentaire;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -134,30 +121,4 @@ class Reservation
         return $this;
     }
 
-    /**
-     * @return Collection<int, ProfilUser>
-     */
-    public function getProfilUsers(): Collection
-    {
-        return $this->profilUsers;
-    }
-
-    public function addProfilUser(ProfilUser $profilUser): self
-    {
-        if (!$this->profilUsers->contains($profilUser)) {
-            $this->profilUsers->add($profilUser);
-            $profilUser->addReservation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProfilUser(ProfilUser $profilUser): self
-    {
-        if ($this->profilUsers->removeElement($profilUser)) {
-            $profilUser->removeReservation($this);
-        }
-
-        return $this;
-    }
 }
