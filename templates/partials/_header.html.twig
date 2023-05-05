@@ -23,7 +23,7 @@
 				<ul class="navbar-nav">
 					{% if app.user %}
 						<li class="nav-item dropdown" style="margin-right: 8rem;">
-							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">profile</a>
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{asset('images/user.png')}}" alt="" class="img-user"></a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="{{ path('user.edit', {id : app.user.id}) }}">Modifier mes informations</a>
 								<a class="dropdown-item" href="{{ path('user.edit.password', {id : app.user.id}) }}">Modifier mon mot de passe</a>

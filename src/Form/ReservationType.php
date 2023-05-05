@@ -22,7 +22,7 @@ class ReservationType extends AbstractType
         $builder
         ->add('name', TextType::class, [
             'attr' => [
-                'class' => 'form-control',
+                'class' => 'form-control custom-form',
                 'minlength' => '1',
                 'maxlength' => '100',
             ],
@@ -93,6 +93,7 @@ class ReservationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Reservation::class,
+
         ]);
     }
 }

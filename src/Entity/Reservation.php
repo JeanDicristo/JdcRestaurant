@@ -34,12 +34,10 @@ class Reservation
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToMany(targetEntity: ProfilUser::class, mappedBy: 'reservation')]
-    private Collection $profilUsers;
+
 
     public function __construct()
     {
-        $this->profilUsers = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
     }

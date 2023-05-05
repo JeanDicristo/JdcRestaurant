@@ -28,7 +28,19 @@ class ReservationRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+
     }
+       public function countGuestsForDate(\DateTimeInterface $date): int
+    {
+        return $this->createQueryBuilder('r')
+            ->select('SUM(r.guest) as totalGuests')
+            ->andWhere('r.date = :date')
+            ->setParameter('date', $date)
+            ->getQuery()
+            ->getSingleScalarResult() ?? 0;
+    }
+
+
 
     public function remove(Reservation $entity, bool $flush = false): void
     {

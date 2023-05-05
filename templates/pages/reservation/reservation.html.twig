@@ -1,17 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Quai Antique - Réservation
-{% endblock %}
+{% block title %}Quai Antique - Réservation{% endblock %}
 
 {% block body %}
- <h1>Réserver une table</h1>
-  {{ form_start(form) }}
+    <h1 class="titleReservation">Réserver une table</h1>
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {{ form_start(form) }}
 
-{{ form_row(form.name) }}
-{{ form_row(form.guest) }}
-{{ form_row(form.date) }}
-{{ form_row(form.hour) }}
-{{ form_rest(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.guest) }}
+  {{ form_row(form.date, { 'attr': {'class': 'datepicker', 'data-date-format': 'yyyy-mm-dd', 'data-provide': 'datepicker', 'data-date-days-of-week': '[0, 1, 2, 3, 4, 5, 6]', 'data-date-week-start': '1'} }) }}
 
-{{ form_end(form) }}
+<div class="form-group">
+    <label for="{{ form.hour.vars.id }}">Heure</label>
+    {{ form_widget(form.hour, { 'attr': {'class': 'form-control'} }) }}
+    <div id="disponibilite_message"></div>
+    {% if disponibilite is defined %}
+        {% if disponibilite %}
+            <p class="text-success">Il y a des places disponibles pour cette date et heure.</p>
+        {% else %}
+            <p class="text-danger">Désolé, il n'y a pas de places disponibles pour cette date et heure.</p>
+        {% endif %}
+    {% endif %}
+</div>
+    {{ form_rest(form) }}
+
+    {{ form_end(form) }}
 {% endblock %}
