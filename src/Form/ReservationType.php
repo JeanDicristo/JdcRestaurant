@@ -83,7 +83,7 @@ class ReservationType extends AbstractType
         ])
         ->add('submit', SubmitType::class, [
             'attr' => [
-                'class' => 'btn btn-primary mt-4'
+                'class' => 'btn button-connexion mt-4'
             ],
             'label' => 'Réserver'
         ]);

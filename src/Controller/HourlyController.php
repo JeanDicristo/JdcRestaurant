@@ -19,7 +19,7 @@ class HourlyController extends AbstractController
     {
 
         $hourlyRepository = $doctrine->getRepository(Hourly::class);
-        $hourlys = $hourlyRepository->findBY([]);
+        $hourlys = $hourlyRepository->findBy([]);
 
         return $this->render('partials/hourly.html.twig', [
             'hourlys' => $hourlys,

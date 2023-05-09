@@ -16,11 +16,11 @@
 
     {{ form_row(form.name) }}
     {{ form_row(form.guest) }}
-  {{ form_row(form.date, { 'attr': {'class': 'datepicker', 'data-date-format': 'yyyy-mm-dd', 'data-provide': 'datepicker', 'data-date-days-of-week': '[0, 1, 2, 3, 4, 5, 6]', 'data-date-week-start': '1'} }) }}
+{{ form_row(form.date, { 'attr': {'id': 'reservation_date', 'class': 'datepicker', 'data-date-format': 'yyyy-mm-dd', 'data-provide': 'datepicker', 'data-date-days-of-week': '[0, 1, 2, 3, 4, 5, 6]', 'data-date-week-start': '1'} }) }}
 
 <div class="form-group">
     <label for="{{ form.hour.vars.id }}">Heure</label>
-    {{ form_widget(form.hour, { 'attr': {'class': 'form-control'} }) }}
+    {{ form_widget(form.hour, { 'attr': {'id': 'reservation_hour', 'class': 'form-control'} }) }}
     <div id="disponibilite_message"></div>
     {% if disponibilite is defined %}
         {% if disponibilite %}

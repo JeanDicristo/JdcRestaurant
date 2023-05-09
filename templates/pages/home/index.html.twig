@@ -4,19 +4,29 @@
 {% endblock %}
 
 {% block body %}
+
+	{% for label, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+				{{ message }}
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		{% endfor %}
+	{% endfor %}
+
 	<div class="galerie">
 		<h3>GALERIE</h3>
 		<p>Découvrez nos spécialités culinaires. Des plats traditionnels aux richesses du terroirs de la région de Chambéry.</p>
-	</div>
-	<div class="card-best">
-		{% for dishs in dishs %}
-			<div class="card" style="width: 18rem;">
-				<img src="{{ vich_uploader_asset(dishs, 'imageFile') }}" alt="" class="img-dish">
-				<div class="card-body">
-					<p class="card-text">{{ dishs.title }}</p>
+		<div class="card-best">
+			{% for photo in photo %}
+				<div class="card" style="width: 18rem;">
+					<img src="{{ vich_uploader_asset(photo, 'imageFile') }}" alt="" class="img-photo">
+					<div class="card-body">
+						<p class="card-text hidden-title">{{ photo.title }}</p>
+					</div>
 				</div>
-			</div>
-		{% endfor %}
+			{% endfor %}
+		</div>
 	</div>
 	<h3>NOTRE SAVOIR FAIRE</h3>
 	<div class="savoir-faire">

@@ -8,6 +8,8 @@ use App\Entity\Dish;
 use App\Entity\Formula;
 use App\Entity\Hourly;
 use App\Entity\Menu;
+use App\Entity\Photo;
+use App\Entity\ProfilUser;
 use App\Entity\Reservation;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -40,5 +42,7 @@ class DashboardController extends AbstractDashboardController
          yield MenuItem::linkToCrud('Plat', 'fa-solid fa-burger', Dish::class);
          yield MenuItem::linkToCrud('Allergie', 'fa-solid fa-seedling', Allergy::class);
          yield MenuItem::linkToCrud('Reservation', 'fa-regular fa-calendar-check', Reservation::class);
+         yield MenuItem::linkToCrud('Users', 'fa-regular fa-calendar-check', ProfilUser::class);
+         yield MenuItem::linkToCrud('Photo', 'fa-regular fa-calendar-check', Photo::class);
     }
 }

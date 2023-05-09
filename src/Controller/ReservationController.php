@@ -16,27 +16,30 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ReservationController extends AbstractController
 {
-/**
- * @Route("/verifier_disponibilite_tables", name="verifier_disponibilite_tables", methods={"POST"})
- */
+#[Route('/verifier_disponibilite_tables', name: 'verifier_disponibilite_tables', methods: ['POST'])]
 public function verifierDisponibiliteTables(Request $request): JsonResponse
 {
-    // Récupération des paramètres envoyés par la requête AJAX
-    $date = $request->request->get('date');
-    $hour = $request->request->get('hour');
+    try {
+        // Récupération des paramètres envoyés par la requête AJAX
+        $date = $request->request->get('date');
+        $hour = $request->request->get('hour');
 
-    // Vérification de la disponibilité des tables à la date et heure spécifiées
-    // Ici, on suppose que la disponibilité est stockée dans une base de données ou un autre système de stockage
-    $tablesDisponibles = true; // Remplacer par votre propre logique de vérification de la disponibilité
+        // Vérification de la disponibilité des tables à la date et heure spécifiées
+        $tablesDisponibles = true; 
 
-    // Création de la réponse JSON
-    $response = new JsonResponse([
-        'disponible' => $tablesDisponibles,
-    ]);
+        // Création de la réponse JSON
+        $response = new JsonResponse([
+            'disponible' => $tablesDisponibles,
+        ]);
+    } catch (\Exception $e) {
+        // En cas d'erreur, renvoyer un message d'erreur dans la réponse JSON
+        $response = new JsonResponse([
+            'error' => $e->getMessage(),
+        ], 500);
+    }
 
     return $response;
 }
-
     #[Route('/reservation', name: 'reservation')]
     public function index(
         ManagerRegistry $doctrine,

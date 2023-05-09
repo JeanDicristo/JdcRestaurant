@@ -3,167 +3,160 @@
 
 /* Global styles */
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #E8E6E6;
-    font-family: Asul, Arial, Helvetica, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #E8E6E6;
+font-family: Asul, Arial, Helvetica, sans-serif;
 }
 li {
-    list-style-type: none;
+list-style-type: none;
 }
+
 /* Header section */
 header {
-    width: 100%;
-    height: 500px;
-    background-image: url('/images/bgHeaderHome.png');
-    background-position: center;
-    background-size: cover;
-    text-align: center;
-    padding: 10px;
+width: 100%;
+height: 500px;
+background-image: url('/images/bgHeaderHome.png');
+background-position: center;
+background-size: cover;
+text-align: center;
+padding: 10px;
+margin-bottom: 10px;
+box-shadow: 0px 5px 5px rgb(10, 10, 10);
 }
 
 /* Navigation menu */
 nav a,
 .nav-link {
-    color: whitesmoke;
+color: whitesmoke;
 }
 ul .dropdown-menu {
-    background-color: #313131;
-}
-
-/* Footer section */
-footer {
-    width: 100%;
-    background-color: #313131;
-    text-align: center;
-    height: 250px;
-    padding: 10px;
-    margin-top: 20px;
-    color: whitesmoke;
-}
-.img-socia {
-    width: 40px;
-    height: 40px;
-    margin-left: 40px;
-}
-.img-user {
-    width: 30px;
-    height: 30px;  
+background-color: #313131;
 }
 
 /* Card section */
 .card-best {
-    background-color: #ffffff;
-    height: 400px;
-    display: flex;
-    box-shadow: 0px 5px 5px rgb(10, 10, 10);
-    margin-bottom: 15px;
+background-color: #ffffff;
+height: 400px;
+display: flex;
+box-shadow: 0px 5px 5px rgb(10, 10, 10);
+margin-bottom: 15px;
 }
 
 .card {
-    height: 260px;
-    margin-left: 20px;
-    margin: auto;
+height: 230px;
+margin-left: 20px;
+margin: auto;
 }
 
-.img-dish {
-    height: 200px;
+.img-photo {
+height: 400px;
 }
 
 .title-carte {
-    font-family: Galada, Asul, Arial, Helvetica, sans-serif;
-    color: black;
+font-family: Galada, Asul, Arial, Helvetica, sans-serif;
+color: black;
+}
+
+.hidden-title {
+opacity: 0;
+transition: opacity 0.5s ease;
+}
+
+.card:hover .hidden-title {
+opacity: 1;
 }
 
 .li-carte {
-    text-align: center;
-    list-style: none;
-}
-.carte-menu {
-    padding: 20px;
-    background-color: #ffffff;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 50px;
-    box-shadow: 0px 5px 5px rgb(10, 10, 10);
-    margin-bottom: 30px;
+text-align: center;
+list-style: none;
 }
 
-.card-text::before{
-    top: 10px;
+.carte-menu {
+padding: 20px;
+background-color: #ffffff;
+width: 50%;
+margin-left: auto;
+margin-right: auto;
+border-radius: 50px;
+box-shadow: 0px 5px 5px rgb(10, 10, 10);
+margin-bottom: 30px;
 }
+
+.card-text::before {
+top: 10px;
+}
+
 /* Savoir-faire section */
 .savoir-faire {
-    height: 400px;
-    width: 100%;
-    display: flex;
-    align-items: center;
+height: 400px;
+width: 100%;
+display: flex;
+align-items: center;
 }
 
 .degustation,
 .histoire {
-    width: 580px;
-    height: 230px;
-    background-color: white;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0px 5px 5px rgb(10, 10, 10);
+width: 580px;
+height: 230px;
+background-color: white;
+margin-left: auto;
+margin-right: auto;
+box-shadow: 0px 5px 5px rgb(10, 10, 10);
 }
 
 .img-savoir-faire {
-    width: 80px;
-    height: 80px;
+width: 80px;
+height: 80px;
 }
 
 /* Arnaud Michant section */
 .arnaud-michant {
-    width: 100%;
-    background-color: white;
+width: 100%;
+background-color: white;
+}
+
+/* Footer section */
+footer {
+width: 100%;
+background-color: #313131;
+text-align: center;
+height: 250px;
+padding: 10px;
+margin-top: 20px;
+color: whitesmoke;
+}
+
+.img-socia {
+width: 40px;
+height: 40px;
+margin-left: 40px;
+}
+
+.img-user {
+width: 30px;
+height: 30px;
 }
 
 /* Button styles */
 .btn-reservation {
-    background-color: black;
-    width: 120px;
-    height: 40px;
-    border: none;
-    border-radius: 50px;
-    color: white;
-    text-align: center;
-    display: block;
-    margin: auto;
+background-color: black;
+width: 120px;
+height: 40px;
+border: none;
+border-radius: 50px;
+color: white;
+text-align: center;
 }
-
-.button-connexion {
-    width: 120px;
-    background-color: black;
-    color: white;
-}
-
-.btn-reservation a {
-    color: white;
-}
-
-/* Text styles */
-h3,
-h4 {
-    text-decoration: underline;
-}
-
-h3,
-p,
-h2,
-h4,
-.li-carte {
-    text-align: center;
-}
-
-h1,
-h2{
-    color: rgb(255, 255, 255);
-}
-.titleReservation,
-.titleHourly {
-    color: black;
-}
+/* START RESPONSIVE */
+@media (max-width: 768px) {
+    /* règles CSS à appliquer lorsque la largeur de l'écran est inférieure ou égale à 768px */
+  }
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+    /* règles CSS à appliquer lorsque la largeur de l'écran est comprise entre 768px et 1024px */
+  }
+  
+  @media (min-width: 1024px) {
+    /* règles CSS à appliquer lorsque la largeur de l'écran est supérieure ou égale à 1024px */
+  }

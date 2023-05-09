@@ -33,7 +33,7 @@ class UserType extends AbstractType
                 new Assert\Length(['min'  =>  2, 'max' => 255])
             ]
         ])
-        ->add('numberGuest', IntegerType::class,  [
+        ->add('Guest', IntegerType::class,  [
             'attr' => [
                 'class' => 'form-control'
             ],
@@ -58,7 +58,7 @@ class UserType extends AbstractType
 
         ->add('submit', SubmitType::class, [
             'attr' => [
-                'class' => 'btn btn-primary mt-4'
+                'class' => 'btn button-connexion mt-4'
             ],
             'label' => 'Modifier'
         ]) ;
