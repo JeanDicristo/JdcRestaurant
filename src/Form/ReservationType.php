@@ -81,6 +81,21 @@ class ReservationType extends AbstractType
                 'class' => 'form-label mt-4'
             ],
         ])
+        ->add('allergy', TextType::class, [
+            'attr' => [
+                'class' => 'form-control custom-form',
+                'minlength' => '1',
+                'maxlength' => '100',
+            ],
+            'label' => 'Allergie',
+            'label_attr' => [
+                'class' => 'form-label mt-4'
+            ],
+            'constraints' => [
+                new Assert\NotBlank(),
+                new Assert\Length(['min'  =>  0, 'max' => 100])
+            ]
+        ])
         ->add('submit', SubmitType::class, [
             'attr' => [
                 'class' => 'btn button-connexion mt-4'

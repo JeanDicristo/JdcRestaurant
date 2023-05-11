@@ -31,8 +31,11 @@ for ($j = 0; $j < 10; $j++) {
         ->setPlainPassword('password')
         ->setGuest(mt_rand(0, 20));
 
+    if ($j < 2) {
+        $user->setRoles(['ROLE_ADMIN']);
+    }
+
     $manager->persist($user);
 }
-        $manager->flush(); 
-    }
+}
 }

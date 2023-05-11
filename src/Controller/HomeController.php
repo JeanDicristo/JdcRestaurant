@@ -21,6 +21,8 @@ class HomeController extends AbstractController
         PhotoRepository $photoRepository,
         HourlyRepository $hourlyRepository,
     ): Response {
+
+        
         $photoRepository = $doctrine->getRepository(Photo::class);
         $photos = $photoRepository->findBy([]); // Récupéréer uniquement 3 PLats ...   FindAll() Récuperer tout les plat
 

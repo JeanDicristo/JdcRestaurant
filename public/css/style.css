@@ -1,162 +1,274 @@
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Asul&family=Galada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asul&family=Galada&family=Kavivanar&display=swap');
 
 /* Global styles */
 body {
-margin: 0;
-padding: 0;
-background-color: #E8E6E6;
-font-family: Asul, Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #E8E6E6;
+  font-family: Asul, Arial, Helvetica, sans-serif;
+  text-align: center;
 }
+
 li {
-list-style-type: none;
+  list-style-type: none;
+}
+
+a {
+  color: whitesmoke;
 }
 
 /* Header section */
 header {
-width: 100%;
-height: 500px;
-background-image: url('/images/bgHeaderHome.png');
-background-position: center;
-background-size: cover;
-text-align: center;
-padding: 10px;
-margin-bottom: 10px;
-box-shadow: 0px 5px 5px rgb(10, 10, 10);
+  width: 100%;
+  height: 500px;
+  background-image: url('/images/bgHeaderHome.png');
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0px 5px 5px rgb(10, 10, 10);
+  color: whitesmoke;
 }
 
 /* Navigation menu */
-nav a,
-.nav-link {
-color: whitesmoke;
-}
-ul .dropdown-menu {
-background-color: #313131;
+.title-brand {
+  font-family: Kavivanar, Asul, Arial, Helvetica, sans-serif;
 }
 
+nav a,
+.nav-link {
+  color: whitesmoke;
+}
+
+.dropdown-menu.show {
+  color: whitesmoke;
+  background-color: #313131;
+  margin-right: 100px;
+}
+
+ul .dropdown-menu a {
+  color: white;
+}
+
+.dropdown-toggle {
+  margin-right: 20px;
+}
 /* Card section */
 .card-best {
-background-color: #ffffff;
-height: 400px;
-display: flex;
-box-shadow: 0px 5px 5px rgb(10, 10, 10);
-margin-bottom: 15px;
+  background-color: #ffffff;
+  height: 400px;
+  display: flex;
+  box-shadow: 0px 5px 5px rgb(10, 10, 10);
+  margin-bottom: 15px;
 }
 
 .card {
-height: 230px;
-margin-left: 20px;
-margin: auto;
+  height: 230px;
+  margin-left: 20px;
+  margin: auto;
 }
 
 .img-photo {
-height: 400px;
+  height: 400px;
 }
 
 .title-carte {
-font-family: Galada, Asul, Arial, Helvetica, sans-serif;
-color: black;
+  font-family: Galada, Asul, Arial, Helvetica, sans-serif;
+  color: black;
 }
 
 .hidden-title {
-opacity: 0;
-transition: opacity 0.5s ease;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 .card:hover .hidden-title {
-opacity: 1;
+  opacity: 1;
 }
 
 .li-carte {
-text-align: center;
-list-style: none;
+  text-align: center;
+  list-style: none;
 }
 
 .carte-menu {
-padding: 20px;
-background-color: #ffffff;
-width: 50%;
-margin-left: auto;
-margin-right: auto;
-border-radius: 50px;
-box-shadow: 0px 5px 5px rgb(10, 10, 10);
-margin-bottom: 30px;
+  padding: 20px;
+  background-color: #ffffff;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50px;
+  box-shadow: 0px 5px 5px rgb(10, 10, 10);
+  margin-bottom: 30px;
 }
 
 .card-text::before {
-top: 10px;
+  top: 10px;
 }
 
 /* Savoir-faire section */
 .savoir-faire {
-height: 400px;
-width: 100%;
-display: flex;
-align-items: center;
+  height: 400px;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .degustation,
 .histoire {
-width: 580px;
-height: 230px;
-background-color: white;
-margin-left: auto;
-margin-right: auto;
-box-shadow: 0px 5px 5px rgb(10, 10, 10);
+  width: 580px;
+  height: 230px;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 5px 5px rgb(10, 10, 10);
 }
 
 .img-savoir-faire {
-width: 80px;
-height: 80px;
+  width: 80px;
+  height: 80px;
 }
 
 /* Arnaud Michant section */
 .arnaud-michant {
-width: 100%;
-background-color: white;
+  width: 100%;
+  background-color: white;
 }
 
 /* Footer section */
 footer {
-width: 100%;
-background-color: #313131;
-text-align: center;
-height: 250px;
-padding: 10px;
-margin-top: 20px;
-color: whitesmoke;
+  width: 100%;
+  background-color: #313131;
+  text-align: center;
+  height: 250px;
+  padding: 10px;
+  margin-top: 20px;
+  color: whitesmoke;
 }
 
 .img-socia {
-width: 40px;
-height: 40px;
-margin-left: 40px;
+  width: 40px;
+  height: 40px;
+  margin-left: 40px;
 }
 
 .img-user {
-width: 30px;
-height: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 /* Button styles */
-.btn-reservation {
-background-color: black;
-width: 120px;
-height: 40px;
-border: none;
-border-radius: 50px;
-color: white;
-text-align: center;
+.btn-reservation,
+.button-connexion {
+  background-color: black;
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  text-align: center;
 }
+
 /* START RESPONSIVE */
 @media (max-width: 768px) {
-    /* règles CSS à appliquer lorsque la largeur de l'écran est inférieure ou égale à 768px */
+  /* règles CSS à appliquer lorsque la largeur de l'écran est inférieure ou égale à 768px */
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Asul, Arial, Helvetica, sans-serif;
+    text-align: center;
+
+  }
+  .navbar-toggler,
+  .navbar-toggler-icon {
+    background-color: white;
+  }
+  .galerie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
-  @media (min-width: 768px) and (max-width: 1024px) {
-    /* règles CSS à appliquer lorsque la largeur de l'écran est comprise entre 768px et 1024px */
+  .card-best {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: auto;
   }
   
-  @media (min-width: 1024px) {
-    /* règles CSS à appliquer lorsque la largeur de l'écran est supérieure ou égale à 1024px */
+  .card {
+    margin: 10px;
   }
+  .savoir-faire {
+    display: block;
+    height: auto;
+    margin-bottom: 40px;
+  }
+  .degustation {
+    margin-bottom: 20px;
+  }
+  footer {
+    height: auto;
+  }
+}
+@media (max-width: 768px) {
+  /* règles CSS à appliquer lorsque la largeur de l'écran est comprise entre 768px et 1024px */
+
+  .navbar-toggler,
+  .navbar-toggler-icon {
+    background-color: white;
+  }
+
+  .savoir-faire {
+    display: block;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    width: auto;
+  }
+  .degustation,
+  .histoire {
+    margin-bottom: 20px;
+    width: auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* règles CSS à appliquer lorsque la largeur de l'écran est comprise entre 768px et 1024px */
+ 
+  .navbar-toggler,
+  .navbar-toggler-icon {
+    background-color: white;
+  }
+
+  .savoir-faire {
+    display: block;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+  .degustation {
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* règles CSS à appliquer lorsque la largeur de l'écran est supérieure ou égale à 1024px */
+
+  .navbar-toggler,
+  .navbar-toggler-icon {
+    background-color: white;
+  }
+
+  .savoir-faire {
+    display: block;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+  .degustation {
+    margin-bottom: 20px;
+  }
+}

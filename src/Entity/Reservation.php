@@ -34,6 +34,9 @@ class Reservation
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $allergy = null;
+
 
 
     public function __construct()
@@ -115,6 +118,18 @@ class Reservation
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getAllergy(): ?string
+    {
+        return $this->allergy;
+    }
+
+    public function setAllergy(string $allergy): self
+    {
+        $this->allergy = $allergy;
 
         return $this;
     }

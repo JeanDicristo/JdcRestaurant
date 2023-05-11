@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Allergy;
 use App\Entity\Hourly;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
+use App\Repository\AllergyRepository;
 use App\Repository\HourlyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -44,12 +46,17 @@ public function verifierDisponibiliteTables(Request $request): JsonResponse
     public function index(
         ManagerRegistry $doctrine,
         HourlyRepository $hourlyRepository,
+        AllergyRepository $allergyRepository,
         Request $request,
         EntityManagerInterface $manager
     ): Response {
     
+
         $hourlyRepository = $doctrine->getRepository(Hourly::class);
         $hourlys =  $hourlyRepository->findBy([]);
+
+        $allergyRepository = $doctrine->getRepository(Allergy::class);
+        $allergys =  $allergyRepository->findBy([]);
     
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
@@ -81,6 +88,7 @@ public function verifierDisponibiliteTables(Request $request): JsonResponse
         return $this->render('pages/reservation/reservation.html.twig', [
             'form' => $form->createView(),
             'hourlys' => $hourlys,
+            'allergy' => $allergys,
             'reservationForm' => $form, // Ajout de la variable de formulaire de réservation
         ]);
     }
