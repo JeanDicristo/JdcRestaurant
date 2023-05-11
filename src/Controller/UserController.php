@@ -2,16 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\Hourly;
+use App\Form\UserType;
 use App\Entity\ProfilUser;
 use App\Form\UserPasswordType;
-use App\Form\UserType;
+use App\Repository\HourlyRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
@@ -29,7 +32,9 @@ class UserController extends AbstractController
         Request $request,
         EntityManagerInterface $manager,
         ProfilUser $choosenUser,
-        UserPasswordHasherInterface $hasher
+        UserPasswordHasherInterface $hasher,
+        ManagerRegistry $doctrine,
+        HourlyRepository $hourlyRepository,
     ): Response {
         // if (!$this->getUser()) {
         //     return $this->redirectToRoute('security.login');
@@ -38,6 +43,9 @@ class UserController extends AbstractController
         // if ($this->getUser() !== $user) {
         //     return $this->redirectToRoute('home.index');
         // }
+
+        $hourlyRepository = $doctrine->getRepository(Hourly::class);
+        $hourlys = $hourlyRepository->findBY([]);
 
         $form = $this->createForm(UserType::class, $choosenUser);
 
@@ -54,7 +62,7 @@ class UserController extends AbstractController
                     'Les informatons du compte ont bien été modifier.'
                 );
 
-                return $this->redirectToRoute('index.home');
+                return $this->redirectToRoute('index');
             }
         } else {
             $this->addFlash(
@@ -65,6 +73,7 @@ class UserController extends AbstractController
 
         return $this->render('pages/user/edit.html.twig', [
             'form' => $form->createView(),
+            'hourlys' => $hourlys,
         ]);
     }
 
@@ -82,8 +91,14 @@ class UserController extends AbstractController
         ProfilUser $choosenUser,
         Request $request,
         EntityManagerInterface $manager,
-        UserPasswordHasherInterface $hasher
+        UserPasswordHasherInterface $hasher,
+        ManagerRegistry $doctrine,
+        HourlyRepository $hourlyRepository,
     ): Response {
+
+        $hourlyRepository = $doctrine->getRepository(Hourly::class);
+        $hourlys = $hourlyRepository->findBY([]);
+
         $form = $this->createForm(UserPasswordType::class);
 
         $form->handleRequest($request);
@@ -112,7 +127,8 @@ class UserController extends AbstractController
         }
 
         return $this->render('pages/user/edit_password.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'hourlys' => $hourlys,
         ]);
     }
 }

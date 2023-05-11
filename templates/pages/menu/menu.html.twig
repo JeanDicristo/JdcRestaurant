@@ -1,18 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MenuController!{% endblock %}
+{% block title %}Hello MenuController!
+{% endblock %}
 
 {% block body %}
 
-    {% for category in categorys %}
-    <h2 class="title-carte">{{ category.name }}</h2>
-    <ul>
-        {% for dish in category.dishes %}
-        <li class="li-carte">{{ dish.title }} - {{ dish.price }} €</li>
-        {% endfor %}
-    </ul>
-    {% endfor %}
-    <button class="btn-reservation">
+	{% for category in categorys %}
+		<h2 class="title-carte">{{ category.name }}</h2>
+		<ul>
+			{% for dish in category.dishes %}
+				<li class="li-carte">{{ dish.title }}
+					-
+					{{ dish.price }}
+					€</li>
+			{% endfor %}
+		</ul>
+	{% endfor %}
+	<div class="carte-menu">
+		{% for menu in menus %}
+			<div class="menu">
+				<h2 class="title-carte">{{ menu.name }}</h2>
+				<ul>
+					{% for formula in menu.formula %}
+						<li>
+							<h3>{{ formula.title }}</h3>
+							<p>{{ formula.description }}</p>
+							<p>{{ formula.price }}
+								€</p>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endfor %}
+	</div>
+	<button class="btn-reservation">
 		<a href="{{path('reservation')}}">Réservation</a>
 	</button>
 {% endblock %}

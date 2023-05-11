@@ -2,24 +2,35 @@
 
 namespace App\Controller;
 
+use App\Entity\Hourly;
 use App\Entity\ProfilUser;
 use App\Form\RegistrationType;
+use App\Repository\HourlyRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
     #[Route('/connexion', name: 'security.login', methods: ['GET', 'POST'])]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(
+        AuthenticationUtils $authenticationUtils,
+        ManagerRegistry $doctrine,
+        HourlyRepository $hourlyRepository,
+        ): Response
     {
+        $hourlyRepository = $doctrine->getRepository(Hourly::class);
+        $hourlys = $hourlyRepository->findBY([]);
+
         return $this->render('pages/security/login.html.twig', [
             'last_username' => $authenticationUtils->getLastUsername(),
-            'error' => $authenticationUtils->getLastAuthenticationError()
+            'error' => $authenticationUtils->getLastAuthenticationError(),
+            'hourlys' => $hourlys,
         ]);
     }
 
@@ -43,8 +54,16 @@ class SecurityController extends AbstractController
      */
     
     #[Route('/inscription', 'security.registration',  methods: ['GET', 'POST'])]
-    public function registration(Request $request, EntityManagerInterface $manager): Response
+    public function registration(
+        Request $request, 
+        EntityManagerInterface $manager,
+        ManagerRegistry $doctrine,
+        HourlyRepository $hourlyRepository,
+        ): Response
     {
+        $hourlyRepository = $doctrine->getRepository(Hourly::class);
+        $hourlys = $hourlyRepository->findBY([]);
+
         $user = new ProfilUser();
         $user->setRoles(['ROLES_USER']);
         $form = $this->createForm(RegistrationType::class, $user);
@@ -65,7 +84,8 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('pages/security/registration.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'hourlys' => $hourlys,
         ]);
     }
 }

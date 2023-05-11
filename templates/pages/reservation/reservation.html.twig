@@ -1,20 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReservationController!{% endblock %}
+{% block title %}Quai Antique - Réservation
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<h1 class="titleReservation">Réserver une table</h1>
+	{% for label, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+				{{ message }}
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		{% endfor %}
+	{% endfor %}
+	<div class="container">
+		<p class="textResevation">Pour tout retard de plus de 20min votre 
+			table sera donnée à d’autre client!</p>
+	</div>
+	{{ form_start(form) }}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	{{ form_row(form.name) }}
+	{{ form_row(form.guest) }}
+	{{ form_row(form.date, { 'attr': {'id': 'reservation_date', 'class': 'datepicker', 'data-date-format': 'yyyy-mm-dd', 'data-provide': 'datepicker', 'data-date-days-of-week': '[0, 1, 2, 3, 4, 5, 6]', 'data-date-week-start': '1'} }) }}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/jeandicristo/Desktop/JdcRestaurant/src/Controller/ReservationController.php'|file_link(0) }}">src/Controller/ReservationController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/jeandicristo/Desktop/JdcRestaurant/templates/reservation/index.html.twig'|file_link(0) }}">templates/reservation/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<div class="form-group">
+		<label for="{{ form.hour.vars.id }}">Heure</label>
+		{{ form_widget(form.hour, { 'attr': {'id': 'reservation_hour', 'class': 'form-control'} }) }}
+		<div id="disponibilite_message"></div>
+		{% if disponibilite is defined %}
+			{% if disponibilite %}
+				<p class="text-success">Il y a des places disponibles pour cette date et heure.</p>
+			{% else %}
+				<p class="text-danger">Désolé, il n'y a pas de places disponibles pour cette date et heure.</p>
+			{% endif %}
+		{% endif %}
+	</div>
+	{{ form_rest(form) }}
+
+	{{ form_end(form) }}
 {% endblock %}

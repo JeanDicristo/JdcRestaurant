@@ -6,12 +6,10 @@ use App\Entity\Hourly;
 use App\Repository\HourlyRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class HourlyController extends AbstractController
+class FooterController extends AbstractController
 {
-    #[Route('/hourly', name: 'hourly')]
     public function index(
         ManagerRegistry $doctrine,
         HourlyRepository $hourlyRepository
@@ -19,10 +17,10 @@ class HourlyController extends AbstractController
     {
 
         $hourlyRepository = $doctrine->getRepository(Hourly::class);
-        $hourlys = $hourlyRepository->findBy([]);
+        $hourlys = $hourlyRepository->findBY([]);
 
-        return $this->render('partials/hourly.html.twig', [
+        return $this->render('partials/_footer.html.twig', [
             'hourlys' => $hourlys,
         ]);
-    }
+}
 }
