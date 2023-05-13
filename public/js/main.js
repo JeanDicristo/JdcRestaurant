@@ -55,15 +55,6 @@ function verifierDisponibiliteTables(date, heure) {
   xhr.send(JSON.stringify({ date: date, heure: heure }));
 }
 
-// function init() {
-//   // Lorsque la date ou l'heure est modifiée, on vérifie la disponibilité des tables
-//   dateField.addEventListener('change', checkAvailability);
-//   hourField.addEventListener('change', checkAvailability);
-
-//   // Vérification initiale de la disponibilité des tables
-//   checkAvailability();
-// }
-
 function checkAvailability() {
   const date = dateField.value;
   const hour = hourField.value;
