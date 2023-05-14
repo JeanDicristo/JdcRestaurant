@@ -29,7 +29,7 @@ Créez la base de données :
 php bin/console doctrine:database:create  
 php bin/console doctrine:schema:create  
 
-(Fixture uniquement pour les utilisateur création 1à ProfilUser avec le rôle  ROLE_USER) Si vous souhaitez remplir la base de données avec des données de test, exécutez :  
+(Fixture uniquement pour les utilisateur création 1à0 ProfilUser avec le rôle  ROLE_USER) Si vous souhaitez remplir la base de données avec des données de test, exécutez :  
 php bin/console doctrine:fixtures:load  
   
 Lancez le serveur Symfony :  
