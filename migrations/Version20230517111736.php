@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230511143748 extends AbstractMigration
+final class Version20230517111736 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -54,7 +54,7 @@ final class Version20230511143748 extends AbstractMigration
         $this->addSql('CREATE TABLE profil_user_allergy (profil_user_id INT NOT NULL, allergy_id INT NOT NULL, PRIMARY KEY(profil_user_id, allergy_id))');
         $this->addSql('CREATE INDEX IDX_E53A2336227A1CC4 ON profil_user_allergy (profil_user_id)');
         $this->addSql('CREATE INDEX IDX_E53A2336DBFD579D ON profil_user_allergy (allergy_id)');
-        $this->addSql('CREATE TABLE reservation (id INT NOT NULL, name VARCHAR(100) NOT NULL, guest INT NOT NULL, date DATE NOT NULL, hour TIME(0) WITHOUT TIME ZONE NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE reservation (id INT NOT NULL, name VARCHAR(100) NOT NULL, guest INT NOT NULL, date DATE NOT NULL, hour TIME(0) WITHOUT TIME ZONE NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, allergy VARCHAR(100) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('COMMENT ON COLUMN reservation.created_at IS \'(DC2Type:datetime_immutable)\'');
         $this->addSql('COMMENT ON COLUMN reservation.updated_at IS \'(DC2Type:datetime_immutable)\'');
         $this->addSql('CREATE TABLE messenger_messages (id BIGSERIAL NOT NULL, body TEXT NOT NULL, headers TEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, available_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, delivered_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
